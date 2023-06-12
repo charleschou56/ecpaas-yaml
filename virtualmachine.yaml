@@ -1,9 +1,0 @@
-apiVersion: virtualization.kubesphere.io/v1alpha1
-kind: VirtualMachine
-metadata:
-  labels:
-    controller-tools.k8s.io: "1.0"
-  name: testvm2
-spec:
-  name: testvm2
-  memory: 64M
