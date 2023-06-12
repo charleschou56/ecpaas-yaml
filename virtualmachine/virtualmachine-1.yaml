@@ -7,11 +7,9 @@ metadata:
 spec:
   diskVolumeTemplates:
     - metadata:
-        annotations:
-          kubesphere.io/alias-name: testvm1
         labels:
           virtualization.ecpaas.io/bootorder: "1"
-        name: img-u1804-cloudimg
+        name: tpl-vol-u1804
       spec:
         resources:
           requests:
@@ -21,7 +19,7 @@ spec:
             name: img-u1804-cloudimg
             namespace: default
   diskVolumes:
-    - img-u1804-cloudimg
+    - tpl-vol-u1804
   hardware:
     domain:
       cpu:
