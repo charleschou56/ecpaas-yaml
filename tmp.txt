@@ -1,0 +1,39 @@
+$ mkdir $GOPATH/src/kubevirt.io && cd $GOPATH/src/kubevirt.io
+$ git clone https://github.com/kubevirt/containerized-data-importer && cd containerized-data-importer
+$ make cluster-up
+$ make cluster-sync
+$ ./cluster-up/kubectl.sh .....
+
+
+timon_chang@accton.com
+linus2021_lin@accton.com
+benson_chiu@accton.com
+squid_ro@accton.com
+wind_lai@accton.com
+elvis_ting@accton.com
+linpower@accton.com
+charles_chou@accton.com
+even_zhang@accton.com
+davian_kuo@accton.com
+roger_luo@accton.com
+macauley_cheng@accton.com
+
+timon_chang 張耕源
+linus2021_lin 林軒逸
+benson_chiu 邱章嘉
+squid_ro 羅憲文
+wind_lai 賴汶亭
+elvis_ting 丁士珉
+linpower 林冠鋐
+charles_chou 周書瑋
+even_zhang 張盛智
+davian_kuo 郭家賓
+roger_luo 羅士桀
+macauley_cheng 鄭振昌
+
+linpower 林冠鋐
+charles_chou 周書瑋
+even_zhang 張盛智
+macauley_cheng 鄭振昌
+
+

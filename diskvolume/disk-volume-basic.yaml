@@ -1,0 +1,11 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: DiskVolume
+metadata:
+  name: vol-54321
+  namespace: default
+spec:
+  resources:
+    requests:
+      storage: 20Gi
+  source:
+    blank: {}

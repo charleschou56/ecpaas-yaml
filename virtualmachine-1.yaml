@@ -1,0 +1,37 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  labels:
+    controller-tools.k8s.io: "1.0"
+  name: testvm1
+spec:
+  diskVolumeTemplates:
+    - metadata:
+        annotations:
+          kubesphere.io/alias-name: testvm1
+        labels:
+          virtualization.ecpaas.io/bootorder: "1"
+        name: img-u1804-cloudimg
+      spec:
+        resources:
+          requests:
+            storage: 20Gi
+        source:
+          image:
+            name: img-u1804-cloudimg
+            namespace: default
+  diskVolumes:
+    - img-u1804-cloudimg
+  hardware:
+    domain:
+      cpu:
+        cores: 2
+      resources:
+        requests:
+          memory: 4Gi
+    hostname: testvm1
+    volumes:
+      - cloudInitNoCloud:
+          userDataBase64: I2Nsb3VkLWNvbmZpZwp1cGRhdGVzOgogIG5ldHdvcms6CiAgICB3aGVuOiBbJ2Jvb3QnXQp0aW1lem9uZTogQXNpYS9UYWlwZWkKcGFja2FnZXM6CiAtIGNsb3VkLWluaXQKcGFja2FnZV91cGRhdGU6IHRydWUKc3NoX3B3YXV0aDogdHJ1ZQpkaXNhYmxlX3Jvb3Q6IGZhbHNlCmNocGFzc3dkOiB7Imxpc3QiOiJyb290OjEyMzQ1NiIsZXhwaXJlOiBGYWxzZX0KcnVuY21kOgogLSBzZWQgLWkgIi9QZXJtaXRSb290TG9naW4vcy9eLiokL1Blcm1pdFJvb3RMb2dpbiB5ZXMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWcKIC0gc3lzdGVtY3RsIHJlc3RhcnQgc3NoZC5zZXJ2aWNlCg==
+        name: cloudinitdisk
+

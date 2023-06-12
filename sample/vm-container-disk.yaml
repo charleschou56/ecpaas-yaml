@@ -1,0 +1,23 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  labels:
+    controller-tools.k8s.io: "1.0"
+  name: testvm2
+spec:
+  hardware:
+    domain:
+      cpu:
+        cores: 2
+      resources:
+        requests:
+          memory: 64Mi
+    hostname: testvm2
+    volumes:
+      - name: containerdisk
+        containerDisk:
+          image: quay.io/kubevirt/cirros-container-disk-demo
+      - cloudInitNoCloud:
+          userDataBase64: SGkuXG4=
+        name: cloudinitdisk
+

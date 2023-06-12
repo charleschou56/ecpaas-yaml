@@ -1,0 +1,46 @@
+apiVersion: virtualization.kubesphere.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  labels:
+    controller-tools.k8s.io: "1.0"
+  name: testvm4
+spec:
+  diskVolumeTemplates:
+    - metadata:
+        annotations:
+          kubesphere.io/alias-name: testvm4
+        labels:
+          virtualization.kubesphere.io/bootorder: "1"
+          virtualization.kubesphere.io/disktype: system
+        name: vol-s8xwukzv
+      spec:
+        resources:
+          requests:
+            storage: 20Gi
+        source:
+          image:
+            name: img-auy72w6b
+            namespace: default
+  diskVolumes:
+    - vol-398ybhx9
+  hardware:
+    domain:
+      cpu:
+        cores: 1
+      devices:
+        interfaces:
+          - macvtap: {}
+            name: eth0
+      resources:
+        limits:
+          memory: 8Gi
+    evictionStrategy: LiveMigrate
+    hostname: demo-vm
+    networks:
+      - multus:
+          networkName: kubesphere-virtualization-system/vxnet-xaucvqn1
+        name: eth0
+    volumes:
+      - cloudInitNoCloud:
+          userDataBase64: I2Nsb3VkLWNvbmZpZwp1cGRhdGVzOgogIG5ldHdvcms6CiAgICB3aGVuOiBbJ2Jvb3QnXQp0aW1lem9uZTogQXNpYS9UYWlwZWkKcGFja2FnZXM6CiAtIGNsb3VkLWluaXQKcGFja2FnZV91cGRhdGU6IHRydWUKc3NoX3B3YXV0aDogdHJ1ZQpkaXNhYmxlX3Jvb3Q6IGZhbHNlCmNocGFzc3dkOiB7Imxpc3QiOiJyb290OjEyMzQ1NiIsZXhwaXJlOiBGYWxzZX0KcnVuY21kOgogLSBzZWQgLWkgIi9QZXJtaXRSb290TG9naW4vcy9eLiokL1Blcm1pdFJvb3RMb2dpbiB5ZXMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWcKIC0gc3lzdGVtY3RsIHJlc3RhcnQgc3NoZC5zZXJ2aWNlCg==
+        name: cloudinitdisk

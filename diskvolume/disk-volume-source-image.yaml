@@ -1,0 +1,13 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: DiskVolume
+metadata:
+  name: tpl-vol-12345
+  namespace: default
+spec:
+  resources:
+    requests:
+      storage: 20Gi
+  source:
+    image:
+      name: img-u1804-cloudimg
+      namespace: default

@@ -1,0 +1,31 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachineInstance
+metadata:
+  labels:
+    kubevirt.io/domain: i-m6t9g3cs
+  name: i-m6t9g3cs
+  namespace: default
+spec:
+  domain:
+    cpu:
+      cores: 2
+    devices:
+      disks:
+        - bootOrder: 1
+          disk:
+            bus: virtio
+          name: vol-s8xwukzv
+        - disk:
+            bus: virtio
+          name: cloudinitdisk
+    memory:
+      guest: 2Gi
+  hostname: testvm-with-dv
+  volumes:
+    - cloudInitNoCloud:
+        networkDataBase64: dmVyc2lvbjogMgpldGhlcm5ldHM6CiAgICBldGgwOgogICAgICAgIHNldC1uYW1lOiBldGgwCiAgICAgICAgYWRkcmVzc2VzOgogICAgICAgICAgICAtIDE5Mi4xNjguNDAuNTAvMjQKICAgICAgICBnYXRld2F5NDogMTkyLjE2OC40MC4yNTQKICAgICAgICBtYXRjaDoKICAgICAgICAgICAgbWFjYWRkcmVzczogMzI6YmE6YzA6YTg6Mjg6MzIKICAgICAgICBuYW1lc2VydmVyczoKICAgICAgICAgICAgYWRkcmVzc2VzOgogICAgICAgICAgICAgICAgLSA4LjguOC44CiAgICAgICAgICAgIHNlYXJjaDogW10K
+        userDataBase64: I2Nsb3VkLWNvbmZpZwp1cGRhdGVzOgogIG5ldHdvcms6CiAgICB3aGVuOiBbJ2Jvb3QnXQp0aW1lem9uZTogQXNpYS9UYWlwZWkKcGFja2FnZXM6CiAtIGNsb3VkLWluaXQKcGFja2FnZV91cGRhdGU6IHRydWUKc3NoX3B3YXV0aDogdHJ1ZQpkaXNhYmxlX3Jvb3Q6IGZhbHNlCmNocGFzc3dkOiB7Imxpc3QiOiJyb290OjEyMzQ1NiIsZXhwaXJlOiBGYWxzZX0KcnVuY21kOgogLSBzZWQgLWkgIi9QZXJtaXRSb290TG9naW4vcy9eLiokL1Blcm1pdFJvb3RMb2dpbiB5ZXMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWcKIC0gc3lzdGVtY3RsIHJlc3RhcnQgc3NoZC5zZXJ2aWNlCg==
+      name: cloudinitdisk
+    - name: vol-s8xwukzv
+      persistentVolumeClaim:
+        claimName: img-u1804-cloudimg

@@ -1,0 +1,70 @@
+- apiVersion: kubevirt.io/v1
+  kind: VirtualMachine
+  metadata:
+    annotations:
+      kubevirt.io/latest-observed-api-version: v1
+      kubevirt.io/storage-observed-api-version: v1alpha3
+    creationTimestamp: "2023-01-12T06:52:30Z"
+    generation: 5
+    labels:
+      kubevirt.io/domain: i-m6t9g3cs
+    name: i-m6t9g3cs
+    namespace: default
+    ownerReferences:
+      - apiVersion: virtualization.kubesphere.io/v1alpha1
+        blockOwnerDeletion: true
+        controller: true
+        kind: VirtualMachine
+        name: i-m6t9g3cs
+        uid: 59ff3104-192d-4f8d-996e-a308252ce484
+    resourceVersion: "74952841"
+    uid: b9338ad8-e8a6-43fb-8804-fe2a0b3d6848
+  spec:
+    runStrategy: Always
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          kubevirt.io/vm: i-m6t9g3cs
+          virtualization.kubesphere.io/vm: i-m6t9g3cs
+      spec:
+        domain:
+          cpu:
+            cores: 1
+          devices:
+            disks:
+              - bootOrder: 1
+                disk:
+                  bus: virtio
+                name: vol-s8xwukzv
+              - disk:
+                  bus: virtio
+                name: cloudinitdisk
+            interfaces:
+              - macAddress: 32:ba:c0:a8:28:32
+                macvtap: {}
+                name: eth0
+            rng: {}
+          machine:
+            type: q35
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+        evictionStrategy: LiveMigrate
+        hostname: testvm
+        networks:
+          - multus:
+              networkName: kubesphere-virtualization-system/vxnet-xaucvqn1
+            name: eth0
+        volumes:
+          - cloudInitNoCloud:
+              networkDataBase64: dmVyc2lvbjogMgpldGhlcm5ldHM6CiAgICBldGgwOgogICAgICAgIHNldC1uYW1lOiBldGgwCiAgICAgICAgYWRkcmVzc2VzOgogICAgICAgICAgICAtIDE5Mi4xNjguNDAuNTAvMjQKICAgICAgICBnYXRld2F5NDogMTkyLjE2OC40MC4yNTQKICAgICAgICBtYXRjaDoKICAgICAgICAgICAgbWFjYWRkcmVzczogMzI6YmE6YzA6YTg6Mjg6MzIKICAgICAgICBuYW1lc2VydmVyczoKICAgICAgICAgICAgYWRkcmVzc2VzOgogICAgICAgICAgICAgICAgLSA4LjguOC44CiAgICAgICAgICAgIHNlYXJjaDogW10K
+              userDataBase64: I2Nsb3VkLWNvbmZpZwp1cGRhdGVzOgogIG5ldHdvcms6CiAgICB3aGVuOiBbJ2Jvb3QnXQp0aW1lem9uZTogQXNpYS9UYWlwZWkKcGFja2FnZXM6CiAtIGNsb3VkLWluaXQKcGFja2FnZV91cGRhdGU6IHRydWUKc3NoX3B3YXV0aDogdHJ1ZQpkaXNhYmxlX3Jvb3Q6IGZhbHNlCmNocGFzc3dkOiB7Imxpc3QiOiJyb290OjEyMzQ1NiIsZXhwaXJlOiBGYWxzZX0KcnVuY21kOgogLSBzZWQgLWkgIi9QZXJtaXRSb290TG9naW4vcy9eLiokL1Blcm1pdFJvb3RMb2dpbiB5ZXMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWcKIC0gc3lzdGVtY3RsIHJlc3RhcnQgc3NoZC5zZXJ2aWNlCg==
+            name: cloudinitdisk
+          - name: vol-s8xwukzv
+            persistentVolumeClaim:
+              claimName: tpl-vol-s8xwukzv

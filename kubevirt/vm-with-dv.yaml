@@ -1,0 +1,52 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  labels:
+    kubevirt.io/vm: vm-alpine-datavolume
+  name: vm-alpine-datavolume
+spec:
+  running: false
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: vm-alpine-datavolume
+    spec:
+      domain:
+        devices:
+          disks:
+            - bootOrder: 1
+              disk:
+                bus: virtio
+              name: datavolumedisk1
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - macAddress: 32:ba:c0:a8:28:11
+              macvtap: {}
+              name: eth0
+        resources:
+          requests:
+            memory: 2Gi
+      hostname: vm-alpine-datavolume
+      volumes:
+        - cloudInitNoCloud:
+            networkDataBase64: dmVyc2lvbjogMgpldGhlcm5ldHM6CiAgICBldGgwOgogICAgICAgIHNldC1uYW1lOiBldGgwCiAgICAgICAgYWRkcmVzc2VzOgogICAgICAgICAgICAtIDE5Mi4xNjguNDAuMTc3LzI0CiAgICAgICAgZ2F0ZXdheTQ6IDE5Mi4xNjguNDAuMjU0CiAgICAgICAgbWF0Y2g6CiAgICAgICAgICAgIG1hY2FkZHJlc3M6IDMyOmJhOmMwOmE4OjI4OjMyCiAgICAgICAgbmFtZXNlcnZlcnM6CiAgICAgICAgICAgIGFkZHJlc3NlczoKICAgICAgICAgICAgICAgIC0gOC44LjguOAogICAgICAgICAgICBzZWFyY2g6IFtd
+            userDataBase64: I2Nsb3VkLWNvbmZpZwp1cGRhdGVzOgogIG5ldHdvcms6CiAgICB3aGVuOiBbJ2Jvb3QnXQp0aW1lem9uZTogQXNpYS9UYWlwZWkKcGFja2FnZXM6CiAtIGNsb3VkLWluaXQKcGFja2FnZV91cGRhdGU6IHRydWUKc3NoX3B3YXV0aDogdHJ1ZQpkaXNhYmxlX3Jvb3Q6IGZhbHNlCmNocGFzc3dkOiB7Imxpc3QiOiJyb290OjEyMzQ1NiIsZXhwaXJlOiBGYWxzZX0KcnVuY21kOgogLSBzZWQgLWkgIi9QZXJtaXRSb290TG9naW4vcy9eLiokL1Blcm1pdFJvb3RMb2dpbiB5ZXMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWcKIC0gc3lzdGVtY3RsIHJlc3RhcnQgc3NoZC5zZXJ2aWNlCg==
+          name: cloudinitdisk
+        - dataVolume:
+            name: img-abc123
+          name: datavolumedisk1
+  dataVolumeTemplates:
+    - metadata:
+        name: img-abc123
+      spec:
+        pvc:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 4Gi
+        source:
+          http:
+            url: http://172.18.6.147:9000/image/ubuntu-18.04-server-cloudimg-i386.img

@@ -1,0 +1,16 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: ImageTemplate
+metadata:
+  annotations:
+    kubesphere.io/alias-name: demo-image
+  labels:
+    virtualization.ecpaas.io/disktype: data
+  name: img-5678
+  namespace: default
+spec:
+  resources:
+    requests:
+      storage: 20Gi
+  source:
+    http:
+      url: http://172.16.73.45:9000/image/ubuntu-18.04-server-cloudimg-i386.img
