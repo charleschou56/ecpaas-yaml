@@ -12,7 +12,6 @@ spec:
     resources:
       requests:
         storage: 4Gi
-    volumeMode: Block
   source:
     http:
-      url: http://172.16.73.22:9000/image/ubuntu-18.04-server-cloudimg-i386.img
+      url: http://172.16.73.32:9000/image/ubuntu-18.04-server-cloudimg-i386.img

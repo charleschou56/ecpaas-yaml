@@ -3,7 +3,7 @@ kind: VirtualMachine
 metadata:
   labels:
     kubevirt.io/domain: i-m6t9g3cs
-  name: i-m6t9g3cs
+  name: i-abcdefg
   namespace: default
 spec:
   runStrategy: Always
@@ -31,4 +31,4 @@ spec:
           name: cloudinitdisk
         - name: vol-s8xwukzv
           persistentVolumeClaim:
-            claimName: img-u1804-cloudimg
+            claimName: tpl-u1804-cloudimg

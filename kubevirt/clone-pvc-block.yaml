@@ -1,15 +1,14 @@
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: DataVolume
 metadata:
-  annotations:
-    cdi.kubevirt.io/storage.deleteAfterCompletion: "false"
-  name: "tpl-u1804-cloudimg"
+  name: "tpl-u1804-cloudimg-block"
 spec:
   source:
     pvc:
       name: img-u1804-cloudimg
       namespace: default
   pvc:
+    volumeMode: Block
     accessModes:
       - ReadWriteOnce
     resources:

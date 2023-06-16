@@ -9,7 +9,8 @@ spec:
     - metadata:
         labels:
           virtualization.ecpaas.io/bootorder: "1"
-        name: tpl-vol-u1804
+          virtualization.ecpaas.io/disktype: system
+        name: vol-u1804
       spec:
         resources:
           requests:
@@ -18,8 +19,19 @@ spec:
           image:
             name: img-u1804-cloudimg
             namespace: default
+    - metadata:
+        labels:
+          virtualization.ecpaas.io/disktype: data
+        name: vol-data1
+      spec:
+        resources:
+          requests:
+            storage: 20Gi
+        source:
+          blank: {}
   diskVolumes:
-    - tpl-vol-u1804
+    - vol-u1804
+    - vol-data1
   hardware:
     domain:
       cpu:
