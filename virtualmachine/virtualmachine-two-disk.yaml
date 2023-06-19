@@ -3,14 +3,14 @@ kind: VirtualMachine
 metadata:
   labels:
     controller-tools.k8s.io: "1.0"
-  name: testvm1
+  name: testvm2
 spec:
   diskVolumeTemplates:
     - metadata:
         labels:
           virtualization.ecpaas.io/bootorder: "1"
           virtualization.ecpaas.io/disktype: system
-        name: vol-u1804
+        name: vol-testvm2-system
       spec:
         resources:
           requests:
@@ -22,7 +22,7 @@ spec:
     - metadata:
         labels:
           virtualization.ecpaas.io/disktype: data
-        name: vol-data1
+        name: vol-testvm2-data1
       spec:
         resources:
           requests:
@@ -30,8 +30,8 @@ spec:
         source:
           blank: {}
   diskVolumes:
-    - vol-u1804
-    - vol-data1
+    - vol-testvm2-system
+    - vol-testvm2-data1
   hardware:
     domain:
       cpu:
@@ -39,7 +39,7 @@ spec:
       resources:
         requests:
           memory: 4Gi
-    hostname: testvm1
+    hostname: testvm2
     volumes:
       - cloudInitNoCloud:
           userDataBase64: I2Nsb3VkLWNvbmZpZwp1cGRhdGVzOgogIG5ldHdvcms6CiAgICB3aGVuOiBbJ2Jvb3QnXQp0aW1lem9uZTogQXNpYS9UYWlwZWkKcGFja2FnZXM6CiAtIGNsb3VkLWluaXQKcGFja2FnZV91cGRhdGU6IHRydWUKc3NoX3B3YXV0aDogdHJ1ZQpkaXNhYmxlX3Jvb3Q6IGZhbHNlCmNocGFzc3dkOiB7Imxpc3QiOiJyb290OjEyMzQ1NiIsZXhwaXJlOiBGYWxzZX0KcnVuY21kOgogLSBzZWQgLWkgIi9QZXJtaXRSb290TG9naW4vcy9eLiokL1Blcm1pdFJvb3RMb2dpbiB5ZXMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWcKIC0gc3lzdGVtY3RsIHJlc3RhcnQgc3NoZC5zZXJ2aWNlCg==
