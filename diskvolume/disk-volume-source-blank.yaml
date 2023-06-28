@@ -2,7 +2,7 @@ apiVersion: virtualization.ecpaas.io/v1alpha1
 kind: DiskVolume
 metadata:
   annotations:
-    kubesphere.io/alias-name: test-vm5
+    ecpaas.io/description: "This is a blank disk volume."
   labels:
     virtualization.ecpaas.io/disktype: data
   name: vol-12345
