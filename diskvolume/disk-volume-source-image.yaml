@@ -1,7 +1,7 @@
 apiVersion: virtualization.ecpaas.io/v1alpha1
 kind: DiskVolume
 metadata:
-  name: tpl-vol-12345
+  name: vol-12345
   namespace: default
 spec:
   resources:
