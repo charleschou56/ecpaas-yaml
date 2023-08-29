@@ -20,9 +20,17 @@ spec:
             - name: cloudinitdisk
               disk:
                 bus: virtio
+          interfaces:
+            - macAddress: 32:ba:c0:a8:28:32
+              macvtap: {}
+              name: enp1s0
         resources:
           requests:
             memory: 2Gi
+      networks:
+        - multus:
+            networkName: ens192
+          name: enp1s0
       volumes:
         - name: cloudinitdisk
           cloudInitNoCloud:
