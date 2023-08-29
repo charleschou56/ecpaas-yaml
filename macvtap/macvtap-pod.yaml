@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: macvtap-pod
+  annotations:
+    k8s.v1.cni.cncf.io/networks: ens192
+spec:
+  containers:
+  - name: busybox
+    image: busybox    
+    command: ["/bin/sleep", "1800"]
+    resources:
+      limits:
+        macvtap.network.kubevirt.io/ens192: 1

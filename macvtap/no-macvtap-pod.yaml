@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: no-macvtap-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox    
+    command: ["/bin/sleep", "1800"]
