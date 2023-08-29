@@ -1,0 +1,19 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: testvm1-empty-disk
+spec:
+  hardware:
+    domain:
+      cpu:
+        cores: 2
+      devices:
+        interfaces:
+        - masquerade: {}
+          name: default
+      resources:
+        requests:
+          memory: 4Gi
+    networks:
+    - name: default
+      pod: {}
