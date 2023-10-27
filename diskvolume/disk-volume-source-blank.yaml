@@ -5,9 +5,10 @@ metadata:
     ecpaas.io/description: "This is a blank disk volume."
   labels:
     virtualization.ecpaas.io/disktype: data
-  name: vol-12345
+  name: vol-8888
   namespace: default
 spec:
+  pvcName: new-vol-8888
   resources:
     requests:
       storage: 20Gi

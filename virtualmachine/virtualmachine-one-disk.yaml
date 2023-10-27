@@ -15,7 +15,7 @@ spec:
             storage: 20Gi
         source:
           image:
-            name: img-u1804-cloudimg
+            name: image-344b897b
             namespace: default
   diskVolumes:
     - vol-u1804

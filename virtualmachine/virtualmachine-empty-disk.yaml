@@ -1,6 +1,9 @@
 apiVersion: virtualization.ecpaas.io/v1alpha1
 kind: VirtualMachine
 metadata:
+  annotations:
+    virtualization.ecpaas.io/created-by: ecpaas-operator
+    virtualization.ecpaas.io/alias: testvm1-empty-disk
   name: testvm1-empty-disk
 spec:
   hardware:

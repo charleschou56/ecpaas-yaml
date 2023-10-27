@@ -1,0 +1,75 @@
+{
+  "apiVersion": "virtualization.kubesphere.io/v1alpha1",
+  "kind": "VirtualMachine",
+  "metadata":
+    {
+      "namespace": "default",
+      "annotations":
+        {
+          "ippool.network.kubesphere.io/default-network": "eth0",
+          "virtualization.kubesphere.io/system": "ubuntu",
+          "virtualization.kubesphere.io/imageInfo": '{"name":"img-nph3wj1f","namespace":"test","system":"ubuntu","version":"14.04.4_LTS_64bit","aliasName":"abcdadsf","diskSize":"20Gi","cpu":1,"memory":"1Gi","isIso":""}',
+          "kubesphere.io/alias-name": "hellovm",
+          "virtualization.kubesphere.io/network-v2": "true",
+          "virtualization.kubesphere.io/version": "v150",
+          "kubesphere.io/creator": "admin",
+        },
+      "name": "i-hveehghl",
+    },
+  "spec":
+    {
+      "hardware":
+        {
+          "evictionStrategy": "LiveMigrate",
+          "domain":
+            {
+              "cpu": { "cores": 1 },
+              "devices": { "interfaces": [{ "macvtap": {}, "name": "eth0" }] },
+              "resources": { "limits": { "memory": "1Gi" } },
+            },
+          "volumes":
+            [
+              {
+                "cloudInitNoCloud":
+                  {
+                    "userDataBase64": "I2Nsb3VkLWNvbmZpZwp1cGRhdGVzOgogIG5ldHdvcms6CiAgICB3aGVuOiBbJ2Jvb3QnXQp0aW1lem9uZTogQXNpYS9UYWlwZWkKcGFja2FnZXM6CiAtIGNsb3VkLWluaXQKcGFja2FnZV91cGRhdGU6IHRydWUKc3NoX3B3YXV0aDogdHJ1ZQpkaXNhYmxlX3Jvb3Q6IGZhbHNlCmNocGFzc3dkOiB7Imxpc3QiOiJyb290OjEyMzQ1NiIsZXhwaXJlOiBGYWxzZX0KcnVuY21kOgogLSBzZWQgLWkgIi9QZXJtaXRSb290TG9naW4vcy9eLiokL1Blcm1pdFJvb3RMb2dpbiB5ZXMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWcKIC0gc3lzdGVtY3RsIHJlc3RhcnQgc3NoZC5zZXJ2aWNlCg==",
+                  },
+                "name": "cloudinitdisk",
+              },
+            ],
+          "networks":
+            [
+              {
+                "multus":
+                  {
+                    "networkName": "kubesphere-virtualization-system/vxnet-f9d35o6g",
+                  },
+                "name": "eth0",
+              },
+            ],
+          "hostname": "hellovm",
+        },
+      "diskVolumeTemplates":
+        [
+          {
+            "metadata":
+              {
+                "labels":
+                  {
+                    "virtualization.kubesphere.io/disktype": "system",
+                    "virtualization.kubesphere.io/bootorder": "1",
+                  },
+                "annotations": { "kubesphere.io/alias-name": "hellovm" },
+                "name": "vol-moatlqom",
+              },
+            "spec":
+              {
+                "resources": { "requests": { "storage": "20Gi" } },
+                "source":
+                  { "image": { "name": "img-nph3wj1f", "namespace": "test" } },
+              },
+          },
+        ],
+      "diskVolumes": ["vol-2voa6xli", "vol-moatlqom"],
+    },
+}

@@ -2,7 +2,14 @@ apiVersion: virtualization.ecpaas.io/v1alpha1
 kind: ImageTemplate
 metadata:
   annotations:
-    kubesphere.io/alias-name: demo-image
+    virtualization.ecpaas.io/alias-name: demo-image
+  labels:
+    virtualization.ecpaas.io/cpu-cores: "1"
+    virtualization.ecpaas.io/image-memory: 2Gi
+    virtualization.ecpaas.io/image-storage: 20Gi
+    virtualization.ecpaas.io/os-family: ubuntu
+    virtualization.ecpaas.io/os-platform: linux
+    virtualization.ecpaas.io/os-version: 18.04_LTS_64bit
   name: img-svc-5678
   namespace: default
 spec:
