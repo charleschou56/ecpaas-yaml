@@ -6,6 +6,7 @@ spec:
   source:
     blank: {}
   pvc:
+    volumeMode: Block
     accessModes:
       - ReadWriteOnce
     resources:

@@ -1,0 +1,21 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: ImageTemplate
+metadata:
+  name: img-test2
+  annotations:
+    ecpaas.io/description: fang2
+  labels:
+    virtualization.ecpaas.io/cpu-cores: '2'
+    virtualization.ecpaas.io/image-memory: 2Gi
+    virtualization.ecpaas.io/os-family: ubuntu
+    virtualization.ecpaas.io/os-version: 20.04_LTS_64bit
+spec:
+  attributes:
+    public: true
+  resources:
+    requests:
+      storage: 20Gi
+  source:
+    clone:
+      name: image-b13937fa
+      namespace: default

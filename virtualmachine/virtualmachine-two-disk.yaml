@@ -1,15 +1,15 @@
 apiVersion: virtualization.ecpaas.io/v1alpha1
 kind: VirtualMachine
 metadata:
-  labels:
-    controller-tools.k8s.io: "1.0"
+  annotations:
+    virtualization.ecpaas.io/system-disk-name: vol-testvm2-system
   name: testvm2
 spec:
   diskVolumeTemplates:
     - metadata:
         labels:
           virtualization.ecpaas.io/bootorder: "1"
-          virtualization.ecpaas.io/disktype: system
+          virtualization.ecpaas.io/disk-type: system
         name: vol-testvm2-system
       spec:
         resources:
@@ -17,7 +17,7 @@ spec:
             storage: 20Gi
         source:
           image:
-            name: img-u1804-cloudimg
+            name: image-344b897b
             namespace: default
     - metadata:
         labels:
