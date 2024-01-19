@@ -1,0 +1,14 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: DiskVolume
+metadata:
+  name: disk-ubuntu-iso-2024
+  namespace: default
+spec:
+  pvcName: disk-ubuntu-iso-2024
+  resources:
+    requests:
+      storage: 20Gi
+  source:
+    image:
+      name: img-linux-iso-2004
+      namespace: default

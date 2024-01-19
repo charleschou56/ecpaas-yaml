@@ -1,0 +1,68 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  annotations:
+    virtualization.ecpaas.io/created-by: ecpaas-operator
+    virtualization.ecpaas.io/alias: test-win-vm1
+  name: test-win-vm1
+spec:
+  diskVolumeTemplates:
+    - metadata:
+        labels:
+          virtualization.ecpaas.io/bootorder: "2"
+          virtualization.ecpaas.io/disk-type: data
+          virtualization.ecpaas.io/disk-media-type: cdrom
+          virtualization.ecpaas.io/disk-hot-plug: "false"
+        name: disk-win11-iso
+        namespace: default
+      spec:
+        resources:
+          requests:
+            storage: 20Gi
+        source:
+          image:
+            name: img-windows-11-iso
+            namespace: default
+    - metadata:
+        labels:
+          virtualization.ecpaas.io/bootorder: "1"
+          virtualization.ecpaas.io/disk-type: system
+          virtualization.ecpaas.io/disk-hot-plug: "false"
+        name: disk-win11-data
+        namespace: default
+      spec:
+        resources:
+          requests:
+            storage: 20Gi
+        source:
+          blank: {}
+  diskVolumes:
+    - disk-win11-iso
+    - disk-win11-data
+  hardware:
+    domain:
+      cpu:
+        cores: 4
+      features:
+        acpi: {}
+        apic: {}
+        hyperv:
+          relaxed: {}
+          vapic: {}
+          spinlocks:
+            spinlocks: 8191
+      devices:
+        interfaces:
+        - masquerade: {}
+          name: default
+        inputs:
+        - type: tablet
+          name: tablet1
+      machine:
+        type: q35
+      resources:
+        requests:
+          memory: 16Gi
+    networks:
+    - name: default
+      pod: {}

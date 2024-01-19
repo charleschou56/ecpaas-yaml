@@ -1,0 +1,60 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  annotations:
+    virtualization.ecpaas.io/created-by: ecpaas-operator
+    virtualization.ecpaas.io/alias: test-linux-iso-vm1
+  name: test-linux-iso-vm1
+spec:
+  diskVolumeTemplates:
+    - metadata:
+        labels:
+          virtualization.ecpaas.io/bootorder: "2"
+          virtualization.ecpaas.io/disk-type: data
+          virtualization.ecpaas.io/disk-media-type: cdrom
+          virtualization.ecpaas.io/disk-hot-plug: "false"
+        name: disk-linux-iso
+        namespace: default
+      spec:
+        resources:
+          requests:
+            storage: 20Gi
+        source:
+          image:
+            name: img-linux-iso-2004
+            namespace: default
+    - metadata:
+        labels:
+          virtualization.ecpaas.io/bootorder: "1"
+          virtualization.ecpaas.io/disk-type: system
+          virtualization.ecpaas.io/disk-hot-plug: "false"
+        name: disk-linux-data
+        namespace: default
+      spec:
+        resources:
+          requests:
+            storage: 20Gi
+        source:
+          blank: {}
+  diskVolumes:
+    - disk-linux-iso
+    - disk-linux-data
+  hardware:
+    domain:
+      cpu:
+        cores: 4
+      devices:
+        interfaces:
+        - masquerade: {}
+          name: default
+        inputs:
+        - type: tablet
+          name: tablet1
+      machine:
+        type: q35
+      resources:
+        requests:
+          memory: 8Gi
+    networks:
+    - name: default
+      pod: {}

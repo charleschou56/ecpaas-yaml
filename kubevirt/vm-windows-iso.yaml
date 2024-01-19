@@ -33,9 +33,6 @@ spec:
           - cdrom:
               bus: sata
             name: virtiocontainer
-          - cdrom:
-              bus: sata
-            name: virtiodrivers
           interfaces:
           - name: default
             model: virtio
@@ -51,13 +48,10 @@ spec:
       volumes:
       - name: ins-iso
         persistentVolumeClaim:
-          claimName: img-windows-iso
+          claimName: img2-windows-iso
       - name: harddrive
         persistentVolumeClaim:
-          claimName: win10-drive
+          claimName: win-drive
       - name: virtiocontainer
         containerDisk:
           image: kubevirt/virtio-container-disk
-      - name: virtiodrivers
-        persistentVolumeClaim:
-          claimName: img-virtio-win

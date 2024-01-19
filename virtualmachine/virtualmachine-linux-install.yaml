@@ -1,0 +1,43 @@
+apiVersion: virtualization.ecpaas.io/v1alpha1
+kind: VirtualMachine
+metadata:
+  annotations:
+    virtualization.ecpaas.io/created-by: ecpaas-operator
+    virtualization.ecpaas.io/alias: testvm1-linux-install
+  name: testvm1-linux-install
+spec:
+  hardware:
+    domain:
+      cpu:
+        cores: 4
+      devices:
+        disks:
+        - disk:
+            bus: virtio
+          name: harddrive
+          bootOrder: 1
+        - cdrom:
+            bus: sata
+          name: ins-iso
+          bootOrder: 2
+        interfaces:
+        - masquerade: {}
+          name: default
+        inputs:
+        - type: tablet
+          name: tablet1
+      machine:
+        type: q35
+      resources:
+        requests:
+          memory: 16Gi
+    networks:
+    - name: default
+      pod: {}
+    volumes:
+    - name: harddrive
+      persistentVolumeClaim:
+        claimName: linux-drive2
+    - name: ins-iso
+      persistentVolumeClaim:
+        claimName: img-linux-iso

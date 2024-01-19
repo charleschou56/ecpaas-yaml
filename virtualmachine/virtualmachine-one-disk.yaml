@@ -10,7 +10,9 @@ spec:
         labels:
           virtualization.ecpaas.io/bootorder: "1"
           virtualization.ecpaas.io/disk-type: system
+          virtualization.ecpaas.io/disk-hot-plug: "false"
         name: vol-u1804
+        namespace: default
       spec:
         resources:
           requests:
